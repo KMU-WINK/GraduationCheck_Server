@@ -26,7 +26,7 @@ public class BoxService {
     private final SubjectsRepository subjectsRepository;
     private final UserRepository userRepository;
 
-    public void addSubjectToBox(String studentId, Integer subjectId) {
+    public BoxResponseDto addSubjectToBox(String studentId, Integer subjectId) {
         User user = userRepository.findByStudentId(studentId)
                 .orElseThrow(()->new IllegalArgumentException("사용자를 찾을 수 없습니다"));
         Subjects subjects = subjectsRepository.findById(subjectId)
@@ -37,7 +37,8 @@ public class BoxService {
                 .subject(subjects)
                 .isTaken(false)
                 .build();
-        enrolledSubjectsRepository.save(enrolledSubject);
+        EnrolledSubjects enrolledSubjects = enrolledSubjectsRepository.save(enrolledSubject);
+        return BoxResponseDto.from(enrolledSubjects);
     }
 
     public void deleteSubjectFromBox(String studentId, Integer subjectId) {

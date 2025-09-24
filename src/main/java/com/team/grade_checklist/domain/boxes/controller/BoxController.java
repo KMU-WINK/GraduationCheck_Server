@@ -20,13 +20,13 @@ public class BoxController {
 
     //TODO : 자신의 목록에 과목 등록
     @PostMapping("/{subjectId}")
-    public ResponseEntity<Void> addSubjectToBox(@PathVariable Integer subjectId,
+    public ResponseEntity<BoxResponseDto> addSubjectToBox(@PathVariable Integer subjectId,
                                                 @AuthenticationPrincipal UserDetails userDetails) {
 
         String currentUserId = userDetails.getUsername();
 
-        boxService.addSubjectToBox(currentUserId, subjectId);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        BoxResponseDto boxResponseDto = boxService.addSubjectToBox(currentUserId, subjectId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(boxResponseDto);
 
     }
 
