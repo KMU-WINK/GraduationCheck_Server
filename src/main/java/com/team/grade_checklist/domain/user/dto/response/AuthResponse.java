@@ -22,9 +22,9 @@ public class AuthResponse {
         return new AuthResponse(token, "인증 성공", true, studentId, department);
     }
 
-    /*public static AuthResponse success(String token){
+    public static AuthResponse success(String token){
         return new AuthResponse(token, "인증성공", true, null, null);
-    }*/
+    }
 
     public static AuthResponse failure(String message) {
         return new AuthResponse(null, message, false, null, null);
