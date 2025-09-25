@@ -34,7 +34,7 @@ public class AuthController {
         try {
             User user = authService.register(request);
             String token = jwtUtil.generateToken(user.getStudentId());
-            return ResponseEntity.ok(AuthResponse.success(token));
+            return ResponseEntity.ok(AuthResponse.success(token, user.getStudentId(), user.getDepartment().toString()));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(AuthResponse.failure(e.getMessage()));
         } catch (Exception e) {
@@ -50,7 +50,7 @@ public class AuthController {
 
             if (user != null) {
                 String token = jwtUtil.generateToken(user.getStudentId());
-                return ResponseEntity.ok(AuthResponse.success(token));
+                return ResponseEntity.ok(AuthResponse.success(token, user.getStudentId(), user.getDepartment().toString()));
             } else {
                 return ResponseEntity.badRequest().body(AuthResponse.failure("학번 또는 비밀번호가 올바르지 않습니다."));
             }
