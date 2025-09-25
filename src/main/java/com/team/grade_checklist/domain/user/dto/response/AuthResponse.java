@@ -15,12 +15,18 @@ public class AuthResponse {
     private String token;
     private String message;
     private boolean success;
+    private String studentId;
+    private String department;
 
-    public static AuthResponse success(String token) {
-        return new AuthResponse(token, "인증 성공", true);
+    public static AuthResponse success(String token, String studentId, String department) {
+        return new AuthResponse(token, "인증 성공", true, studentId, department);
     }
 
+    /*public static AuthResponse success(String token){
+        return new AuthResponse(token, "인증성공", true, null, null);
+    }*/
+
     public static AuthResponse failure(String message) {
-        return new AuthResponse(null, message, false);
+        return new AuthResponse(null, message, false, null, null);
     }
 }
