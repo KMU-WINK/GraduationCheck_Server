@@ -60,12 +60,12 @@ public class SecurityConfig {
         // 현재는 모든 도메인 허용
         if (isProduction()) {
             // 운영환경에서는 실제 프론트엔드 도메인만 허용할 것
-            // configuration.setAllowedOrigins(Arrays.asList(
-            //     "https://frontend-domain.com",
-            //     "https://www.frontend-domain.com"
-            // ));
+             configuration.setAllowedOrigins(Arrays.asList(
+                 "https://api.graduation-check.wink.io.kr",
+                 "https://localhost:3000"
+             ));
 
-            configuration.setAllowedOriginPatterns(Arrays.asList("*")); // -> 지워야됨
+            //configuration.setAllowedOriginPatterns(Arrays.asList("*")); // -> 지워야됨
         } else {
             // 개발환경 -> 로컬 개발서버 허용
             configuration.setAllowedOriginPatterns(Arrays.asList("*"));
